@@ -16,6 +16,7 @@ Aqui trobareu els seguents fitxers:
 - **README.md**: informació sobre el repositori i fitxers disponibles.
 - **src/receptari_hogarmania.py**: script en llenguatge python per a dur a terme l'extracció de totes les receptes dispnibles a l'apartat de receptes de la secció de cuina de lloc web de 'hogarmania'.
 - **data/receptari_hogarmaia_20201109_180010.csv**: dataset generat a partir d'executar l'script "receptari_hogarmania.py". Aquest dataset conté informació de més de 10.000 receptes culinaries (extretes del lloc web a dia specifical al nom del fitxer).
+- **images/logo.jpg**: representació gràfica del dataset. 
 - **PRAC1.pdf**: aquest fitxer conté les respostes de l'anunciat de la pràctica.
 - **PRAC1.Rmd**: aquest fitxer conté el codi markdown per a generar el fitxer pdf (PRAC1.pdf).
 - **robots.txt**: fitxer "robots.txt" del lloc web (www.hogarmania.com).
