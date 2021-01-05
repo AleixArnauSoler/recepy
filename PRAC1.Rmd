@@ -1,264 +1,1394 @@
-<<<<<<< HEAD
 ---
-title: 'Dataset: Receptari culinari d''Hogarmania (+10.000 receptes disponibles)'
-author: "Aleix Arnau Soler & Adrià Tarradas Planella"
-date: "9 de Novembre de 2020"
+title: 'Tipologia i cicle de vida de les dades'
+subtitle: 'Pràctica 2: Neteja i anàlisi de les dades'
+author: "Autors: Adrià Tarradas i Aleix Arnau Soler"
+date: "Desembre 2020"
 output:
-  pdf_document: default
+  pdf_document:
+    highlight: zenburn
+    toc: yes
   html_document:
-    df_print: paged
+    highlight: default
+    number_sections: yes
+    theme: cosmo
+    toc: yes
+    toc_depth: 2
+  word_document: default
 header-includes:
-- \usepackage[spanish]{babel}
-- \usepackage{caption}
-- \captionsetup[table]{name=Taula}
+   - \usepackage[justification=raggedright,labelfont=bf,singlelinecheck=false]{caption}
+   - \usepackage[spanish]{babel}
+   - \usepackage{caption}
+   - \captionsetup[table]{name=Taula}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 1. Context
-
-La societat actual està marcada per un ritme de vida frenètic, amb horaris laborals, moltes ocupacions i on, en molts casos, mares i pares han de a més, compaginar tot això amb cuidar i atendre els fills. Tot junt fa que en moltes llars sigui pràcticament impossible dedicar gaire temps a la cuina. La falta de temps, preparació, o simplement coneixement, fa que en moltes ocasions s'acabi optant per preparar menjar ràpid o demanant menjar a domicili, amb el risc afegit de que la nostre dieta, i la dels nostres fills, no sigui lo equilibrada que tots desitjariem. Però existeixen un gran número de receptes de cuina que podem elaborar de manera ràpida per als nostres menús diaris. En molts casos, el problema és simplement que es desconeixen els plats que es poden elaborar amb allò que es té a disposició, o quins plats nutritius i equilibrats es poden elaborar si es disposa de poc temps. O simplement que es desconeixen els ingredients i els passos necessaris per a elaborar un plat d'interès.
-La web [**Hogarmania**](www.hogarmania.com) conté una secció de cuina amb receptes presentades en programes de televisió a Espanya durant més d'una dècada per cuiners reconeguts a nivell nacional com Karlos Arguiñano, entre altres. Aquest lloc web conté totes les dades i material multimèdia necessari per a la creació d'un receptari complet i equilibrat.
-  
-
-## 2. Títol pel dataset
-
-El títol del dataset és "Receptari Hogarmania" ja que recull informació de totes les receptes de cuina de la pàgina web Hogarmania.
-
-
-## 3. Descripció del dataset
-
-El dataset generat és un recopilatori de més de 10.000 receptes de cuines extretes de la secció de cuina de la web [**Hogarmania**](www.hogarmania.com) i elaborades per varis cuiners (la majoria en programes de televisió). Aquest dataset proporciona les eines necessàries per a procedir de forma exitosa en el món de la cuina, amb un registre extens de la nostre memoria i patrimoni culinari. Cadascuna de les receptes enregistrades s'acompanya (si es troba disponible) del vídeo (1 vídeo resum i un vídeo amb la versió completa) que al seu dia va ser emès per televisió on un cuiner de referència a nivell nacional explica tots els passos a seguir per a l'elaboració de la recepta, pas a pas. Per a cadascuna de les receptes (files) es disposa de les següents variables (columnes): nom de la recepta, categoria a la qual pertany la recepta, ingredients de la recepta, temps de preparació, temps total, nom del cuiner, pasos de l'elaboració, composició nutricional, consell medic, imatge de la recepta, video resum amb els passos de l’elaboració, video complet de l'elaboració de la recepta.
-
-\newpage
-## 4. Representació gràfica
-
-A la Figura 1 es pot veure la representació gràfica escollida, la qual consisteix en un *collage* que agrupa imatges representatives de cada tipus de recepta (carns, sopes, còcktails, etc.).
-
-![Mosaic amb imatges d'algunes de les receptes disponibles](./images/logo.jpg)
-
-
-## 5. Contingut
-
-Per a cada recepta (les quals corresponen amb cada fila or registre del conjunt de dades) es disposa de la informació següent en forma de variables o columnes:
-
-* **titol**: Títol/nom de la recepta.
-* **ingredients**: Ingredients necessaris per a l'elaboració de la recepta.
-* **temps_preparacio**: Temps necessari per a la preparació de la recepta.
-* **temps_total**: Temps total necessari per a la preparació i cocció de la recepta.
-* **chef**: Cuiner encarregat d'elaborar i explicar la recepta.
-* **elaboracio**: Pasos a seguir per a l'elaboració de la recepta.
-* **info_nutricional**: Informació nutricional de la recepta.
-* **consells_doctor**: Consells per part de personal especialitzat (doctors i dietistes) en relació a la recepta.
-* **link_imatge**: Imatge de  la presentació final del plat.
-* **link_video_resum**: Video resum (3-5 min) dels pasos a seguir per a l'elaboració de la recepta.
-* **link_video_complet**: Video complet de l'elaboració de la recepta (tal qual es va emetre per televisió).
-* **tipus_recepta**: Categoria a la que pertany la recepta (i.e. carns, pasta, postres, etc).
-* **persones**: Quantitat de persones que es podran alimentar amb l'elaboració del plat que explica la recepta.
-
-Tota la informació recopilada s'emmagatzema a un fitxer csv amb el nom "recipes_dataset_AAAAMMDD_HHMMSS", on la part final del nom es correspon al timestamp de la data en la que ha estat creat. Això fa que sigui possible identificar a quin moment es van recopilar les dades i, per tant, saber la data en la que la informació del dataset es correspon exactament al contingut de la web.
-
-\newpage
-## 6. Agraïments
-
-La titularitat de les dades correspon exclusivament a      COMUNICACIÓN S.A.
-Totes les dades han sigut extretes a partir de la informació disponible en diferents *sitemaps* de l'apartat de receptes de la secció de cuina del web [**Hogarmania**](www.hogarmania.com)
-Per a l'extracció de dades s'ha fet ús del llenguatge de programació Python i els mòduls disponibles per a dur a terme tècniques de *Web Scraping* com són *requests* o *beautifulsoup4*.
-
-
-## 7. Inspiració
-
-Un receptari com el que es troba disponible en aquest dataset té un gran ventall d'aplicacions ja que permet responde a un gran número de preguntes. Per un costat és una guia molt àmplia i detallada de la memoria culinaria del nostre país, amb la informació detallada i necessària per a l'elaboració de cadascuna de les receptes recopilades. Però, i aixó és el que el fa més important, les dades enregistrades  ens permeten filtrar i seleccionar d'entre les més de 10.000 receptes disponibles, aquelles receptes que poden ser d'interès en un moment concret. Així doncs, el dataset ens permetria, per exemple, filtrar i seleccionar aquelles receptes que podríem elaborar només amb allò que tenim disponible a la nevera. De manera similar, empreses de neveres intel·ligents amb implementació de IoT poden implementar un sistema on la teva propia nevera et suggereix plats a elaborar basant-se amb els ingredients que tens disponibles. De forma similar, es pot filtrar per plats d'elaboració curta, si es disposa de poc temps, o partir de referències mèdiques o nutricionals. De forma similar, dietistes i/o usuaris poden utilitzar les dades disponibles en aquest dataset per a elaborar dietas nutricionalment equilibrades, filtran la informació a partir de la informació nutricional de la recepta. Totes les receptes, a més, venen amb vídeos que ajuden als usuaris a elaborar les receptes de forma fàcil i entretinguda.
-
-Per posar un cas pràctic. Una pare o mare pot arribar a casa i preguntar-se: quin plat podria elaborar per a menjar jo i els meus dos fills, que fos nutritiu i gustos, amb menys de 40 minuts que tinc disponibles abans de tornar a la feina, i a partir dels ingredients que tinc a mà a casa? I és més, en l’escenari de que es sàpiga el plat que es vol o es pot cuinar, quins són els passos per a cuinar aquesta recepta? El dataset proposat permetria trobar una o varies receptes d'entre les disponibles que s'adequa als requeriments plantejats i els ingredients disponibles. A més, disposa dels passos i vídeos per a l'elaboració del plat de manera senzilla i satisfactòria.
-
-
-## 8. Llicència
-
-Aquest dataset està publicat sota la llicència **Creative Commons Reconeixement-NoComercial-SenseObraDerivada** (CC BY-NC-ND 4.0 License). Els termes legals que fan referència a la llicència es poden consultar a <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
-
-Aquesta llicència és la més restrictiva de totes. El motiu principal que ens ha portat a aplicar una llicència tant restrictiva és degut a que la "Propiedad intelectual y Derechos de Copyright" de la secció d'"aviso legal" del web especifica que:
-
-*"Queda prohibida la reproducción, distribución, puesta a disposición, comunicación pública y utilización total o parcial, de los contenidos (imágenes, textos y vídeos) de Hogarmania.com, en cualquier forma o modalidad, dispositivo analógico o digital, sin previa, expresa y escrita autorización, incluyendo, en particular, su mera reproducción y/o puesta a disposición como resúmenes, reseñas o revistas de prensa con fines comerciales o directa o indirectamente lucrativos, a la que BAINET COMUNICACIÓN S.A. manifiesta oposición expresa."*
-
-Vam intentar comunicar-nos amb el propietari de les dades, però a dia d'avui encara no em rebut resposta i per tal d'evitar un impacte negatiu del nostre treball cap al propietari de les dades n'oferim uns usos limitats.
-
-Els punts més importants que caracterítzen aquesta llicència són:
-
-* **BY - Reconeixament**: En cas de redistribució del dataset, caldrà donar crèdit als autors i al propietari de les dades
-
-* **NC - No comercial**: El dataset no pot ser utilitzat amb fins comercials
-
-* **ND - Sense obres derivades**: No es pot publicar cap obra derivada del dataset
-
-
-## 9. Codi
-
-El codi utilitzat per a l'extracció de dades del lloc web es troba disponible a:
-
-* [**Repositori Aleix:** https://github.com/AleixArnauSoler/recepy](https://github.com/AleixArnauSoler/recepy)
-
-* [**Repositori Adrià:** https://github.com/latp/recepy](https://github.com/latp/recepy)
-
-
-## 10. Dataset
-
-El dataset generat es troba disponible a la carpeta corresponent del [**Github**](https://github.com/latp/recepy/data) i a [**Zenodo**](https://doi.org/10.5281/zenodo.4265137).
-
-* El DOI del dataset és **10.5281/zenodo.4265137**:
-
-
-## 11. Contribució
-
 ```{r, include=FALSE}
-table<-matrix(c("Recerca prèvia","Redacció de les respostes","Desenvolupament codi","AAS & ATP","AAS & ATP","AAS & ATP"),ncol=2)
+#Càrrega de llibreries
+
+library(readr)
+library(stringr)
+library(kableExtra)
+library(tibble)
+library(dplyr)
+library(ggplot2)
+library(plyr)
+library(ggpubr)
+library(gmodels)
+library(e1071)
+```
+
+\newpage
+
+# 1. Presentació del projecte de ciència de dades
+
+## 1.1. Background
+
+L’enfonsament del Titanic és un dels naufragis més famosos de la història.
+El 15 d'abril de 1912, durant el seu viatge inaugural, el considerat "inenfonsable" RMS Titanic es va enfonsar després de xocar amb un iceberg. Malauradament, no hi havia prou bots salvavides per a tothom a bord, cosa que va provocar la mort de 1502 de 2224 passatgers i tripulants. Tot i que hi va haver algun element de sort per sobreviure, sembla ser que alguns grups de persones tenien més probabilitats de sobreviure que d’altres.
+
+## 1.2. Objectiu
+
+L'objectiu d'aquesta pràctica és la creació final d'un o varis models predictius que responguin a la pregunta: **"quin tipus de persones tenien més probabilitats de sobreviure?"**. Per això, caldrà primer netejar i analitzar les dades dels passatgers a bord del RMS Titanic (*i.e.* nom, edat, sexe, classe socioeconòmica, etc.) abans de construir els models per a predir quins passatgers van sobreviure a l'enfonsament del Titanic.
+
+## 1.3. Descripció del dataset
+
+El dataset que utilitzarem en aquesta pràctica és *Titanic: Machine Learning from Disaster*, disponible clicant a [*aquí*](https://www.kaggle.com/c/titanic). 
+
+Aquest conjunt de dades està compost per diversos atributs/característiques dels passatgers del titanic distribuïts en 2 fitxers: un dataset per entrenar els models i un altre per a testar-los. A més, s'incou un fitxer amb la predicció de la supervivencia dels passatgers (codificat com a 0: mort o 1: sobreviu) que assumeix que totes les dones, i només les dones, sobreviuen. Obviament, aquestes prediccions són irreals pero ens serveixen com a exemple de com hauria de ser el fitxer final amb les prediccions de supervivencia en cas de que es participés a una de les competició de [*Kaggle*](https://www.kaggle.com/). És per aquest motiu que les dades es proporcionen ja semparades en un dataset d'entrenament i un dataset de testeig, ja que així tots els membres que participen a la cometició de la web Kaggle parteixen de la mateixa informació i dades, i per tant es poden comparar entre ells els resultats obtinguts amb els diferents models implentats. 
+
+
+Els fitxers que componen el dataset són:
+
+* **train.csv**: Conté totes les dades i variables d'un subgrup dels passatgers a bord del RMS Titanic (891 passatgers i tripulants), a més de la variable que ens indica si aquell passatger va morir o sobreviure. Aquest dataset serà el que s'utilitzarà per l'entrenament d'un model.
+
+* **test.csv**: Conté totes les dades i variables d'un subgrup més petit que l'anterior dels passatgers a bord del RMS Titanic (en aquest cas 418 passatgers i tripulants) amb l'excepció de que aquest dataset no conté la variable que ens indica si el passatger va sobreviure o no. Aquestes dades s'utilitzaran per a poder testejar els models creats amb les dades del dataset d'entrenament.
+
+* **gender_submission.csv**: Conté la classe dels passatgers (si sobreviuen o no) vinculada a l'identificador de cada passatger, assumint que totes les dones, i només les dones, haguessin sobreviscut.
+
+Cada passatger conté informació de les següents variables:
+
+```{r  include=FALSE}
+table<-matrix(c("PassangerID","Survived","Pclass","Name","Sex","Age","SibSp","Parch","Ticket","Fare","Cabin","Embarked","Número identificador del passatger","Enter que indica si el passatger va sobreviure l'enfonsament o no","Enter que indica el tipus de tiquet del passatger","Títol/Nom del passatger","Sexe del passatger","Edat del passatger (anys)","Número de cònjuges i germans del passatger a bord","Número de pares i fills del passatger a bord","Número del tiquet del passatger","Preu pagat/Tarifa del viatge","Número de cabina","Port en el que ha embarcat el passatger","","0 = No, 1 = Sí","1 = 1a classe, 2 = 2a classe, 3 = 3a classe","","","","","","","","","C = Cherbourg, Q = Queenstown, S = Southampton"),ncol=3)
+colnames(table)<-c("Variables","Definició","Codificació")
+rownames(table)<-c("","","","","","","","","","","","")
+table_variables<-as.table(table)
+table_variables
+```
+
+\newpage
+```{r ,echo=FALSE}
+knitr::kable(table_variables, caption = "Data diccionary: resum de les variables del dataset 'Titanic: Machine Learning from Disaster'.")%>% 
+  kable_styling(latex_options="scale_down")
+```
+
+Notes a tenir en compte:
+* La variable **pclass** ens serveix com a indicador indirecte del nivell socioeconomic del passatger (alt: 1a classe, mitjà: 2a classe, baix: 3a classe).
+* L'edat dels menors d'1 any està codificada com la fracció d'any que tenen. Les edats és mostren com a fraccions on en alguns casos s'indica' el 'i mig' (e.g. 35.50 = 35 anys i mig)
+* Alguns nens viatjaven amb una mainadera, per tant és possible que per algun d'ells 'parch' sigui 0.
+
+\newpage
+
+# 2. Integració i comprobació
+
+Un cop les dades s'han descarregat des de l'enllaç proporcionat, carreguem les dades a l'entorn de treball.
+
+```{r}
+train_raw <- read.csv("data/train.csv", sep=',', stringsAsFactors = FALSE)
+test_raw <- read.csv("data/test.csv", sep=',', stringsAsFactors = FALSE)
+test_class_raw <- read.csv("data/gender_submission.csv", sep=',', stringsAsFactors = FALSE)
+```
+
+Primer inspeccionem els datasets
+```{r}
+head(train_raw)
+```
+```{r}
+head(test_raw)
+```
+
+```{r}
+head(test_class_raw)
+```
+
+Primer de tot extreurem la variable 'Survived' del dataset d'entrenament en un format igual al dataset 'gender_submission.csv' ja que aquesta no ens farà falta de moment i així podem integrar els dos datasets en un de sol per a dur a terme la neteja, inspecció i analisis en un sol dataset.
+
+```{r}
+train_predictions<-train_raw[,c("PassengerId","Survived")]
+train_raw<-train_raw[,-2]
+```
+
+Comprovem que les dades s'han carregat correctamen i les inspeccionem.
+Dataset d'entrenament:
+
+```{r}
+# Comprovem que les dimensions del dataset siguin les esperades
+dim(train_raw)
+# Comprovem en quina classe es troben les variables
+sapply(train_raw,class)
+# Comprovem l'estructura
+str(train_raw)
+# Inspeccionem alguns parametres bàsics
+summary(train_raw)
+# Inspeccionem les dades
+glimpse(train_raw)
+```
+
+Dataset de testeig:
+
+```{r}
+# Comprovem que les dimensions del dataset siguin les esperades
+dim(test_raw)
+# Comprovem en quina classe es troben les variables
+sapply(test_raw,class)
+# Comprovem l'estructura
+str(test_raw)
+# Inspeccionem alguns parametres bàsics
+summary(test_raw)
+# Inspeccionem les dades
+glimpse(test_raw)
+```
+
+Les dimensions són les esperades i el format és equivalent entre els dos datasets.
+
+```{r}
+head(train_raw)
+head(test_raw)
+```
+Integrem les dades dels dos datasets en un de sol.
+```{r}
+dataset<-rbind(train_raw,test_raw)
+head(dataset)
+dim(dataset)
+```
+
+A partir de la informació observada decidim canviar les classes d'algunes variables. Al canviar la classe de la variable 'Age', tots aquells passatgers menors d'1 any passaran a tenir edat = 0 (indicatiu de que tenen mesos de vida)
+
+```{r}
+dataset <- within(dataset, {
+  Pclass <- factor(Pclass)
+  Sex <- factor(Sex)
+  Age <- as.integer(Age)
+  Embarked <- factor(Embarked)
+})
+```
+
+Tornem a inspeccionar:
+
+```{r}
+# Inspeccionem les dades
+glimpse(dataset)
+```
+
+**Observacions:**
+
+* Les dimensions són les esperades.
+* De la variable 'Name' es poden extreure els títols d'algunes persones.
+* La variable 'Sex' es podria codificar de forma binaria.
+* La variable 'Fare' sembla representar el preu total pagat alhora de comprar més d'un tiquet junts (e.g. families) envés del tiquet individual.
+* Podem crear 'dummy' variables per a les variables 'Pclass', 'Sex' i 'Embarked'
+* De la variable 'cabin' es pot extreure la lletra que segurament representa diferentes zones del vaixell.
+* Dels resultats de la funció summary() i glimpse() es pot veure com tenim varis valors nuls o mencants en les variables: Age, Fare, Cabin i Embarked
+
+# 3. Neteja de dades
+
+## 3.1. Gestió de valors buits o nul
+
+Creem una funció que indica les variables que contenen valors nul i l'executem passant-li el dataset que hem carregat.
+
+```{r}
+has_na <- function(dades) {
+  no_na <- TRUE
+  for (i in names(dades)) {
+    a <- sum(is.na(dades[[i]]))
+    if (a != 0) {
+      no_na <- FALSE
+      print(paste("La variable ", i, " té ", a, " valors nul"))
+    }
+    else if (a == 0 & is.character(dades[[i]])) {
+      b <- length(dades[[i]][which(dades[[i]]=="")])
+      if (b != 0) {
+        no_na <- FALSE
+        print(paste("La variable ", i, " té ", b, " valors buits"))
+      }
+    }
+  }
+  if (no_na) {
+    print("No hi ha cap variable amb valors nul")
+  }
+}
+```
+
+Un cop creada la funció l'executem per saber quines variables tenen valors nul en els diferents datasets.
+Dataset d'entrenament:
+
+```{r}
+has_na(dataset)
+```
+
+```{r}
+# Observant les dades veiem que la variable 'Embarked' també té 2 valors buits no identificats amb la funció que hem definit.
+table(dataset$Embarked,useNA='always')
+
+# Aquests es troben en el passatger número 62 i 830
+dataset[which(dataset$Embarked==""),]
+```
+Com que només es tracta de dos valors, i aquest passatgers viatjaven sols, assumirem que aquests passatgers van embarcar al mateix port que la majoria de passatgers ('S'). De donar-se el cas de que algun d'aquests viatgers no viatges sol, també podriem assumir que que el port d'embarcament era el mateix que els seus familiars. Aquest el podriem trobar mitjançant el cognom o nom de familia del passatger.
+
+```{r}
+dataset[62,]$Embarked<-'S'
+dataset[830,]$Embarked<-'S'
+
+table(dataset$Embarked,useNA='always')
+
+dataset$Embarked<-droplevels(dataset$Embarked)
+```
+
+En quan a la variable 'Fare', assumirem que aquest té el mateix valor mig que el que altres passatgers de viatjant en circumstancies similars van pagar.
+```{r}
+# Aquests es troba en el passatger número 1044
+dataset[which(is.na(dataset$Fare)),]
+
+dataset[1044,]$Fare<-mean(dataset[which(dataset$Pclass==3&dataset$SibSp==0&dataset$Parch==0),]$Fare,na.rm = T)
+
+dataset[1044,]$Fare
+
+```
+
+La variable 'Cabin' conté molts valors mencants, per a tant els tractarem com a mencants i no intentarem imputar els que falten.
+
+En quan a la variable 'Age' imputarem les edats mencants segons el grup al que pertanyi cadascun dels passatgers on aquestes dades manquen. Hem decidit que fariem servir les variables 'Sex', 'Pclass' i 'Parch' igual o diferent a 0 per a crear els grups dels quals imputar les edats mancants.
+
+```{r}
+
+dataset.maleC1Parch0<-dataset[which(dataset$Sex=='male'&dataset$Pclass=='1'&dataset$Parch<1),]
+dataset.maleC1Parch1<-dataset[which(dataset$Sex=='male'&dataset$Pclass=='1'&dataset$Parch>=1),]
+dataset.maleC2Parch0<-dataset[which(dataset$Sex=='male'&dataset$Pclass=='2'&dataset$Parch<1),]
+dataset.maleC2Parch1<-dataset[which(dataset$Sex=='male'&dataset$Pclass=='2'&dataset$Parch>=1),]
+dataset.maleC3Parch0<-dataset[which(dataset$Sex=='male'&dataset$Pclass=='3'&dataset$Parch<1),]
+dataset.maleC3Parch1<-dataset[which(dataset$Sex=='male'&dataset$Pclass=='3'&dataset$Parch>=1),]
+dataset.femaleC1Parch0<-dataset[which(dataset$Sex=='female'&dataset$Pclass=='1'&dataset$Parch<1),]
+dataset.femaleC1Parch1<-dataset[which(dataset$Sex=='female'&dataset$Pclass=='1'&dataset$Parch>=1),]
+dataset.femaleC2Parch0<-dataset[which(dataset$Sex=='female'&dataset$Pclass=='2'&dataset$Parch<1),]
+dataset.femaleC2Parch1<-dataset[which(dataset$Sex=='female'&dataset$Pclass=='2'&dataset$Parch>=1),]
+dataset.femaleC3Parch0<-dataset[which(dataset$Sex=='female'&dataset$Pclass=='3'&dataset$Parch<1),]
+dataset.femaleC3Parch1<-dataset[which(dataset$Sex=='female'&dataset$Pclass=='3'&dataset$Parch>=1),]
+
+# Comprovem que les particions estan bé
+nrow(dataset.maleC1Parch0)+
+nrow(dataset.maleC1Parch1)+
+nrow(dataset.maleC2Parch0)+
+nrow(dataset.maleC2Parch1)+
+nrow(dataset.maleC3Parch0)+
+nrow(dataset.maleC3Parch1)+
+nrow(dataset.femaleC1Parch0)+
+nrow(dataset.femaleC1Parch1)+
+nrow(dataset.femaleC2Parch0)+
+nrow(dataset.femaleC2Parch1)+
+nrow(dataset.femaleC3Parch0)+
+nrow(dataset.femaleC3Parch1)
+
+```
+
+Comprovem si cadascun dels grups mostre distribucions d'edat amb mitjanes diferents.
+```{r}
+
+#maleC1Parch0
+age_mean1 <- mean(dataset.maleC1Parch0$Age, na.rm = T)
+age_median1 <- median(dataset.maleC1Parch0$Age, na.rm = T)
+
+p_maleC1Parch0<-ggplot(dataset.maleC1Parch0, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean1, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median1, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="maleC1Parch0")
+
+#maleC1Parch1
+age_mean2 <- mean(dataset.maleC1Parch1$Age, na.rm = T)
+age_median2 <- median(dataset.maleC1Parch1$Age, na.rm = T)
+
+p_maleC1Parch1<-ggplot(dataset.maleC1Parch1, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean2, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median2, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="maleC1Parch1")
+
+#maleC2Parch0
+age_mean3 <- mean(dataset.maleC2Parch0$Age, na.rm = T)
+age_median3 <- median(dataset.maleC2Parch0$Age, na.rm = T)
+
+p_maleC2Parch0<-ggplot(dataset.maleC2Parch0, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean3, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median3, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="maleC2Parch0")
+
+#maleC2Parch1
+age_mean4 <- mean(dataset.maleC2Parch1$Age, na.rm = T)
+age_median4 <- median(dataset.maleC2Parch1$Age, na.rm = T)
+
+p_maleC2Parch1<-ggplot(dataset.maleC2Parch1, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean4, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median4, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="maleC2Parch1")
+
+#maleC3Parch0
+age_mean5 <- mean(dataset.maleC3Parch0$Age, na.rm = T)
+age_median5 <- median(dataset.maleC3Parch0$Age, na.rm = T)
+
+p_maleC3Parch0<-ggplot(dataset.maleC3Parch0, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean5, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median5, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="maleC3Parch0")
+
+#maleC3Parch1
+age_mean6 <- mean(dataset.maleC3Parch1$Age, na.rm = T)
+age_median6 <- median(dataset.maleC3Parch1$Age, na.rm = T)
+
+p_maleC3Parch1<-ggplot(dataset.maleC3Parch1, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean6, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median6, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="maleC3Parch1")
+
+#femaleC1Parch0
+age_mean7 <- mean(dataset.femaleC1Parch0$Age, na.rm = T)
+age_median7 <- median(dataset.femaleC1Parch0$Age, na.rm = T)
+
+p_femaleC1Parch0<-ggplot(dataset.femaleC1Parch0, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean7, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median7, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="femaleC1Parch0")
+
+#femaleC1Parch1
+age_mean8 <- mean(dataset.femaleC1Parch1$Age, na.rm = T)
+age_median8 <- median(dataset.femaleC1Parch1$Age, na.rm = T)
+
+p_femaleC1Parch1<-ggplot(dataset.femaleC1Parch1, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean8, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median8, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="femaleC1Parch1")
+
+#femaleC2Parch0
+age_mean9 <- mean(dataset.femaleC2Parch0$Age, na.rm = T)
+age_median9 <- median(dataset.femaleC2Parch0$Age, na.rm = T)
+
+p_femaleC2Parch0<-ggplot(dataset.femaleC2Parch0, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean9, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median9, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="femaleC2Parch0")
+
+#femaleC2Parch1
+age_mean10 <- mean(dataset.femaleC2Parch1$Age, na.rm = T)
+age_median10 <- median(dataset.femaleC2Parch1$Age, na.rm = T)
+
+p_femaleC2Parch1<-ggplot(dataset.femaleC2Parch1, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean10, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median10, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="femaleC2Parch1")
+
+#femaleC3Parch0
+age_mean11 <- mean(dataset.femaleC3Parch0$Age, na.rm = T)
+age_median11 <- median(dataset.femaleC3Parch0$Age, na.rm = T)
+
+p_femaleC3Parch0<-ggplot(dataset.femaleC3Parch0, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean11, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median11, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="femaleC3Parch0")
+
+#femaleC3Parch1
+age_mean12 <- mean(dataset.femaleC3Parch1$Age, na.rm = T)
+age_median12 <- median(dataset.femaleC3Parch1$Age, na.rm = T)
+
+p_femaleC3Parch1<-ggplot(dataset.femaleC3Parch1, aes(Age)) +
+  geom_density(fill = 'orchid', alpha =0.7) +
+  geom_vline(aes(xintercept = age_mean12, color = 'mean'), linetype = 5) +
+  geom_vline(aes(xintercept = age_median12, color = 'median'), linetype = 5) +
+  scale_color_manual(name = "stats", values = c(mean = 'indianred', median = 'steelblue')) +
+  ggtitle(label ="femaleC3Parch1")
+
+
+figure_Ages <- ggarrange(p_maleC1Parch0,p_maleC1Parch1,p_maleC2Parch0,p_maleC2Parch1,p_maleC3Parch0,p_maleC3Parch1,p_femaleC1Parch0,p_femaleC1Parch1,p_femaleC2Parch0,p_femaleC2Parch1,p_femaleC3Parch0,p_femaleC3Parch1, ncol = 3, nrow = 4)
+
+figure_Ages
+```
+
+
+```{r}
+
+impute_age <- function (x) {
+    x[is.na(x)] <- median(x, na.rm = T)
+    return(x)
+}
+
+impute_age(dataset.maleC1Parch0$Age)
+
+dataset.maleC1Parch0$Age<-impute_age(dataset.maleC1Parch0$Age)
+dataset.maleC1Parch1$Age<-impute_age(dataset.maleC1Parch1$Age)
+dataset.maleC2Parch0$Age<-impute_age(dataset.maleC2Parch0$Age)
+dataset.maleC2Parch1$Age<-impute_age(dataset.maleC2Parch1$Age)
+dataset.maleC3Parch0$Age<-impute_age(dataset.maleC3Parch0$Age)
+dataset.maleC3Parch1$Age<-impute_age(dataset.maleC3Parch1$Age)
+dataset.femaleC1Parch0$Age<-impute_age(dataset.femaleC1Parch0$Age)
+dataset.femaleC1Parch1$Age<-impute_age(dataset.femaleC1Parch1$Age)
+dataset.femaleC2Parch0$Age<-impute_age(dataset.femaleC2Parch0$Age)
+dataset.femaleC2Parch1$Age<-impute_age(dataset.femaleC2Parch1$Age)
+dataset.femaleC3Parch0$Age<-impute_age(dataset.femaleC3Parch0$Age)
+dataset.femaleC3Parch1$Age<-impute_age(dataset.femaleC3Parch1$Age)
+
+dataset_imputed<-rbind(dataset.maleC1Parch0,dataset.maleC1Parch1,dataset.maleC2Parch0,dataset.maleC2Parch1,dataset.maleC3Parch0,dataset.maleC3Parch1,dataset.femaleC1Parch0,dataset.femaleC1Parch1,dataset.femaleC2Parch0,dataset.femaleC2Parch1,dataset.femaleC3Parch0,dataset.femaleC3Parch1)
+
+dataset_imputed<-dataset_imputed[,c('PassengerId','Age')]
+names(dataset_imputed)[2]<-'Age_imp'
+
+dataset<-merge(dataset,dataset_imputed,by = 'PassengerId')
+```
+
+## 3.2. Creació de variables
+
+### 3.2.1. Creació variable 'Title'
+
+A partir del nom dels passatgers es poden extreure els titols d'algun d'ells. 
+```{r}
+
+# Extreiem el 'titol' de cada passatger. Com que el format dels nomes sempre es el mateix podem seguir una estructura per trobar-los
+dataset$title <- str_sub(dataset$Name, str_locate(dataset$Name, ",")[ , 1] + 2, str_locate(dataset$Name, "\\.")[ , 1] - 1)
+
+# combines els títols dels passatgers en grups segons si considerem que formen part de la noblesa (i.e. tenen algun títol, o no)
+# Titols nobles per homes
+names_noblesa <- c("Capt", "Col", "Don", "Dr", "Jonkheer", "Major", "Rev", "Sir","Lady", "Mlle", "Mme", "Ms", "the Countess", "Dona")
+dataset$title[dataset$title %in% names_noblesa] <- "noble"
+dataset$title<-factor(dataset$title)
+# Comprobem el resultat final
+table(dataset$title)
+
+```
+
+### 3.2.2. Creació variable 'Zona'
+
+De la variable 'cabin' extreiem la lletra que segurament representa la zona del vaixell on es troba la cabina.
+```{r}
+Zona <- dataset %>%
+  select(Cabin) %>%
+  mutate(Zona = factor(str_extract(Cabin, pattern = "^.")))
+
+dataset$Zona<-as.character(Zona$Zona)
+
+for (i in 1:length(dataset$Zona)){
+  if(is.na(dataset[i,]$Zona)){
+    dataset[i,]$Zona<-'Desconeguda'
+  }
+}
+
+dataset$Zona<-factor(dataset$Zona)
+
+```
+
+### 3.2.3. Creació variable 'Familiy_Size' i 'FamilyCat'
+
+El tamany de les families es pot inferir a partir de les variables 'SibSp' i 'Parch'. A més, tota aquella gent que comparteixi cognom és probable que formin part de la mateixa familia.
+Dataset d'entrenament:
+
+```{r}
+#Creem la variable 'Familiy_name"
+dataset$Family_name <- str_replace(string = dataset$Name, pattern = ",.*", replacement = "")
+
+#Visualitzem les dades
+dataset %>%
+  select(Name, Family_name) %>%
+  head(10)
+
+#Ceem la variable 'Family_size' (sumem 1 per assegurar-nos de que el passatger també es té en compte en la seva propia familia)
+dataset <- dataset %>%
+  mutate(Family_size = SibSp + Parch + 1)
+
+#Visualitzem les dades
+dataset %>%
+  select(Family_name, SibSp, Parch, Family_size) %>%
+   arrange(Family_name)%>%
+  head(10)
+
+```
+
+Categorizem el tamany de les families segons si el passatger va sol, en familia/grup gran o petit
+
+```{r}
+
+dataset <- dataset %>%
+  mutate(FamilyCat = factor(case_when(Family_size == 1 ~ 'sol'
+                            ,Family_size > 1 & Family_size < 5 ~ 'petita'
+                            ,Family_size >= 5 & Family_size < 7 ~ 'moderada'
+                            ,Family_size >= 7 ~ 'gran')))
+
+
+```
+
+### 3.2.4. Creació variable 'Price_Person'
+
+```{r}
+dataset$Price_Per_Person<-dataset$Fare/dataset$Family_size
+```
+ 
+Podem visualitzar com ara el preu pagat per ticket per a cada passatger, es mou dins d'un rang logic segons la classe en la que viatjaven: 1a classe = >18 dolars, 2a class = 9-18 dollars, 3a classe = < 9 dolars.
+```{r}
+# Use semi-transparent fill
+p_fare<-ggplot(dataset[which(dataset$Fare<100),], aes(x=Fare, fill=Pclass)) +
+  geom_density(alpha=0.4)
+p_fare
+
+```
+
+```{r}
+# Use semi-transparent fill
+p_priceperson<-ggplot(dataset[which(dataset$Price_Per_Person<100),], aes(x=Price_Per_Person, fill=Pclass)) +
+  geom_density(alpha=0.4)+ geom_vline(xintercept = 9, linetype="dashed", 
+                color = "red", size=0.5) +
+  geom_density(alpha=0.4)+ geom_vline(xintercept = 18, linetype="dashed", 
+                color = "red", size=0.5)
+p_priceperson
+
+```
+
+Finalment, podem tornar a comprobar que només tenim valors mencants a la variable 'Cabin', 'Zona' que és equivalent, i 'Age', de la qual hem creat una variable nova 'Age_imp' sense valors mencants.
+
+```{r}
+has_na(dataset)
+table(dataset$Embarked,useNA='always')
+```
+
+### 3.2.5. Creació variable 'AgeCat'
+
+Categorizem l'edat dels passatgers en intervals de 5 anys amb l'objectiu de poder utilitzar aquesta variable a l'hora d'aplicar mètodes que utilitzen atributs categòrics en l'etapa d'anàlisi.
+
+Observem quin és el rang de valors que pren la variable *Age*:
+
+```{r}
+summary(dataset$Age_imp)
+```
+
+```{r}
+dataset["AgeCat"] <- cut(dataset$Age_imp, breaks = c(-1,10,18,55,100), labels = c("nens","adolescents","adults","ancians"))
+
+table(dataset$AgeCat,useNA='always')
+
+```
+
+
+### 3.2.6. Creació variable 'PriceCat'
+
+Com hem vist abans, la distribució del preu per persona (Price_Per_Person) segons classe en la que viatgen els passatgers sembla indicar que tenim un preu de referencia del tiquet segons la classe en la que es viatges. Així doncs, hem decidit discretitzar la variable Price_Per_Person en tres grups: preu baix, mig i alt.  
+
+
+```{r}
+summary(dataset$Price_Per_Person)
+
+dataset["PriceCat"] <- cut(dataset$Price_Per_Person, breaks = c(-1,9,18,513), labels = c("baix","mig","alt"))
+```
+
+
+## 3.3. Gestió de valors extrems (outliers)
+
+Els outliers són valors extrems que es trobem molt lluny de la distribució normal o esperada d’un atribut. De forma formal es solen definir com aquells valors que es troben a més de 3 desviacions estàndards de la mitjana, tot i que altres consideren definicions més estrictes com més enllà de 6 desviacions estàndards de la mitjana. Aquests poden incrementar l’error en la variància i conseqüentment reduir el poder estadístic d’un test alhora de fer estimacions significatives, o que aquestes estimacions estiguin esbiaixades. A més, la presència d’aquests pot afectar dràsticament a la mitjana. 
+
+Així doncs, cal observar els valors extrems de les variables numèriques i considerar si es corresponen a valors errònis que cal evitar o bé són casos extrems que convé mantenir. 
+
+Per començar l'anàlisi de valors atípics hem creat una funció que mostra els diagrames de caixa de les diferents variables numèriques:
+
+```{r}
+mostrar_diag_caixa <- function(dades, variables_numeriques) {
+  mida <- ceiling(sqrt(length(variables_numeriques)))
+  par(mfrow=c(2,2))
+  for (i in variables_numeriques) {
+    boxplot(dades[[i]], main=i, horizontal = TRUE)
+  }
+}
+```
+
+I una altra que indica textualment els valors atípics d'una variable:
+
+```{r}
+deteccio_valors_atipics <- function(dades,variables_numeriques) {
+  for (i in variables_numeriques) {
+    valors_atipics <- boxplot.stats(dades[[i]])$out
+    if (length(valors_atipics != 0)) {
+      print(paste("La variable", i, "té els valors atípics: "))
+      print(valors_atipics)
+    }
+  }
+}
+```
+
+Un cop creades les funcions, les cridem passant-los hi les dades de cada fitxer i un vector amb el nom de les variables numèriques que contenen:
+
+```{r}
+mostrar_diag_caixa(dataset,c("Age_imp","SibSp","Parch","Price_Per_Person","Family_size"))
+```
+
+Com hem vist enteriorment, tenim varies variables a considerar: Age_imp (omitim Age), SibSp, Parch, Family_size i Price_Per_Person (ommitim Fare).
+
+Tot i que tenim varis valors que s'allunyen considerablement de la mitjana de la distribució d'aquestes variables, considerem que els valors extrems observats són llògics i esperables ja que es moun dins d'un rang de valors que esperariem, tant pel que fa a les edats, o al número de familiars a bord o tamany de familia. L'única variable que ens faria dubtar és el preu pagat per tiquet, tot i que ens falta informació per a saber si aquests preus extrems serien possible (e.g. tiquet a 1a classe comprat a última hora en la millor cabina). Tot i així, com que treballarem amb la variable PriceCat, i tots aquests valors queden categoritzats dins de la categoria de preu 'alt', no és rellevant i per tant no eliminem cap d'aquests valors extrems.
+
+Així doncs considerem que no hi ha outliers a eliminar en les nostres dades finals.
+
+```{r}
+deteccio_valors_atipics(dataset,c("Age_imp","SibSp","Parch","Price_Per_Person","Family_size"))
+```
+
+### 3.4. Datasets final
+
+Primer de tot reduim la dimensionalitat del nostre dataset actual per a només treballar amb les variables que ens interessa analitzar. Incorporem també les dades de supervivencia en aquells passatgers pels quals coneixem si van sobreviure o no. I guardarem el fitxer com a 'dataset_titanic_clean.csv', el qual conté les dades netes que utilitzarem més endavant per als anàlisis.
+
+```{r}
+dataset_net<-dataset[,c("PassengerId","Pclass","Sex","Zona","FamilyCat","Price_Per_Person","PriceCat","Age_imp","title","Embarked","AgeCat")]
+
+# El dataset final
+dataset_final<-merge(dataset_net,train_predictions,by = "PassengerId", all = T)
+
+# Convertim la variable 'Survived' en categorica
+dataset_final$Survived<-factor(dataset_final$Survived)
+
+write.csv(dataset_final,"dataset_titanic_clean.csv")
+```
+
+Podem observar com el dataset final conté 6 variables categoriques i 2 variables numériques (a banda de l'identificador del passatger i si la informació de si va sobreviure o no)
+
+```{r}
+glimpse(dataset_final)
+```
+
+Tornem a crear els datasets d'entrenament i test inicials utilitzant les dades actuals ja netejades i processades.
+
+```{r}
+# El dataset final d'entrenament
+dataset_train<-dataset_final[which(!(is.na(dataset_final$Survived))),]
+dim(dataset_train)
+
+# El dataset final de test
+dataset_test<-dataset_final[which(is.na(dataset_final$Survived)),]
+dim(dataset_test)
+```
+
+\newpage
+
+## 4. Exploració i anàlisis de variables
+
+Primer de tot seleccionem tots els grups de cada variable que ens interessa analitzar. Llavors en comprobarem la normalitat i homogeneïtat de la variància de cadascun d'ells.
+
+```{r}
+# Grups seleccion segons classe (Pclass)
+table(dataset_final$Pclass,useNA='always')
+dataset_final.Class1<-dataset_final[which(dataset_final$Pclass=='1'),]
+dataset_final.Class2<-dataset_final[which(dataset_final$Pclass=='2'),]
+dataset_final.Class3<-dataset_final[which(dataset_final$Pclass=='3'),]
+
+# Grups seleccion segons sexe
+table(dataset_final$Sex,useNA='always')
+dataset_final.Male<-dataset_final[which(dataset_final$Sex=='male'),]
+dataset_final.Female<-dataset_final[which(dataset_final$Sex=='female'),]
+
+# Grups seleccion segons Zona
+table(dataset_final$Zona,useNA='always')
+dataset_final.ZA<-dataset_final[which(dataset_final$Zona=='A'),]
+dataset_final.ZB<-dataset_final[which(dataset_final$Zona=='B'),]
+dataset_final.ZC<-dataset_final[which(dataset_final$Zona=='C'),]
+dataset_final.ZD<-dataset_final[which(dataset_final$Zona=='D'),]
+dataset_final.ZE<-dataset_final[which(dataset_final$Zona=='E'),]
+dataset_final.ZF<-dataset_final[which(dataset_final$Zona=='F'),]
+dataset_final.ZG<-dataset_final[which(dataset_final$Zona=='G'),]
+dataset_final.ZT<-dataset_final[which(dataset_final$Zona=='T'),]
+
+# Grups seleccion segons Tamany familia (FamiliyCat)
+table(dataset_final$FamilyCat,useNA='always')
+dataset_final.sol<-dataset_final[which(dataset_final$FamilyCat=='sol'),]
+dataset_final.petita<-dataset_final[which(dataset_final$FamilyCat=='petita'),]
+dataset_final.moderada<-dataset_final[which(dataset_final$FamilyCat=='moderada'),]
+dataset_final.gran<-dataset_final[which(dataset_final$FamilyCat=='gran'),]
+
+# Grups seleccion segons preu pagat (PriceCat)
+table(dataset_final$PriceCat,useNA='always')
+dataset_final.baix<-dataset_final[which(dataset_final$PriceCat=='baix'),]
+dataset_final.mig<-dataset_final[which(dataset_final$PriceCat=='mig'),]
+dataset_final.alt<-dataset_final[which(dataset_final$PriceCat=='alt'),]
+
+# Grups seleccion segons títol
+table(dataset_final$title,useNA='always')
+dataset_final.Master<-dataset_final[which(dataset_final$title=='Master'),]
+dataset_final.Miss<-dataset_final[which(dataset_final$title=='Miss'),]
+dataset_final.Mr<-dataset_final[which(dataset_final$title=='Mr'),]
+dataset_final.Mrs<-dataset_final[which(dataset_final$title=='Mrs'),]
+dataset_final.Noble<-dataset_final[which(dataset_final$title=='noble'),]
+
+# Grups seleccion segons supervivencia
+table(dataset_final$Survived,useNA='always')
+dataset_final.Viu<-dataset_final[which(dataset_final$Survived=='0'),]
+dataset_final.Mor<-dataset_final[which(dataset_final$Survived=='1'),]
+
+```
+
+## 4.1. Comprobació de la normalitat variables quantitatives
+
+Per a comprobar que les variables quantitatives que tenim segueixen una distribució normal utilitzarem el test de Shapiro-Wilk
+```{r}
+# Price
+shapiro.Price<-shapiro.test(dataset_final$Price_Per_Person)
+# Age
+shapiro.Age_imp<-shapiro.test(dataset_final$Age_imp)
+
+# Price Supervivents
+shapiro.Su.Price<-shapiro.test(dataset_final.Viu$Price_Per_Person)
+
+# Price morts
+shapiro.Mo.Price<-shapiro.test(dataset_final.Mor$Price_Per_Person)
+
+# Age Supervivents
+shapiro.Su.Age_imp<-shapiro.test(dataset_final.Viu$Age_imp)
+
+# Age Morts
+shapiro.Mo.Age_imp<-shapiro.test(dataset_final.Mor$Age_imp)
+
+# Price class1
+shapiro.C1.Price<-shapiro.test(dataset_final.Class1$Price_Per_Person)
+
+# Price class2
+shapiro.C2.Price<-shapiro.test(dataset_final.Class2$Price_Per_Person)
+
+# Price class3
+shapiro.C3.Price<-shapiro.test(dataset_final.Class3$Price_Per_Person)
+
+```
+
+### 4.1.1. Resultats
+
+```{r}
+table_res<-matrix(c(round(mean(dataset_final$Price_Per_Person),2),
+         round(mean(dataset_final$Age_imp),2),
+         round(mean(dataset_final.Viu$Price_Per_Person),2),
+         round(mean(dataset_final.Mor$Price_Per_Person),2),
+         round(mean(dataset_final.Class1$Price_Per_Person),2),
+         round(mean(dataset_final.Class2$Price_Per_Person),2),
+         round(mean(dataset_final.Class3$Price_Per_Person),2),
+         round(mean(dataset_final.Viu$Age_imp),2),
+         round(mean(dataset_final.Mor$Age_imp),2),
+         round(median(dataset_final$Price_Per_Person),2),
+         round(median(dataset_final$Age_imp),2),
+         round(median(dataset_final.Viu$Price_Per_Person),2),
+         round(median(dataset_final.Mor$Price_Per_Person),2),
+         round(median(dataset_final.Class1$Price_Per_Person),2),
+         round(median(dataset_final.Class2$Price_Per_Person),2),
+         round(median(dataset_final.Class3$Price_Per_Person),2),
+         round(median(dataset_final.Viu$Age_imp),2),
+         round(median(dataset_final.Mor$Age_imp),2),
+         round(sd(dataset_final$Price_Per_Person),2),
+         round(sd(dataset_final$Age_imp),2),
+         round(sd(dataset_final.Viu$Price_Per_Person),2),
+         round(sd(dataset_final.Mor$Price_Per_Person),2),
+         round(sd(dataset_final.Class1$Price_Per_Person),2),
+         round(sd(dataset_final.Class2$Price_Per_Person),2),
+         round(sd(dataset_final.Class3$Price_Per_Person),2),
+         round(sd(dataset_final.Viu$Age_imp),2),
+         round(sd(dataset_final.Mor$Age_imp),2),
+         shapiro.Price[2],
+         shapiro.Age_imp[2],
+         shapiro.Su.Price[2],
+         shapiro.Mo.Price[2],
+         shapiro.C1.Price[2],
+         shapiro.C2.Price[2],
+         shapiro.C3.Price[2],
+         shapiro.Su.Age_imp[2],
+         shapiro.Mo.Age_imp[2]),ncol=4)
+
+
+colnames(table_res)<-c("Mean","Median","sd","Shapiro-Wilk (p)")
+rownames(table_res)<-c("Price","Age","Price Supervivents","Price Morts","Price Class 1", "Price Class 2", "Price Class 3", "Age Supervivents","Age Morts")
+table_res<-as.table(table_res)
+
+
+```
+
+```{r ,echo=FALSE}
+knitr::kable(table_res, caption = "Resultats de les distribucions de les variables contínues'.")%>% 
+  kable_styling(latex_options="scale_down")
+```
+Podem observar com cap de les variables continues analitzades (Age i Price) segueix una distribució normal en cap dels grups testats. El p-value del test de Shapiro-Wilk és < 0.5 en tots els casos. Per tant, en tots els casos és rebutja la hipòtesis nul·la que considera que la distribució és normal.
+
+Comprobem si la variable edat segueix una distribució normal en algun dels grups creats anteriorment.
+```{r}
+shapiro.C1.Age_imp<-shapiro.test(dataset_final.Class1$Age_imp)
+shapiro.C2.Age_imp<-shapiro.test(dataset_final.Class2$Age_imp)
+shapiro.C3.Age_imp<-shapiro.test(dataset_final.Class3$Age_imp)
+shapiro.Male.Age_imp<-shapiro.test(dataset_final.Male$Age_imp)
+shapiro.Female.Age_imp<-shapiro.test(dataset_final.Female$Age_imp)
+shapiro.ZA.Age_imp<-shapiro.test(dataset_final.ZA$Age_imp)
+shapiro.ZB.Age_imp<-shapiro.test(dataset_final.ZB$Age_imp)
+shapiro.ZC.Age_imp<-shapiro.test(dataset_final.ZC$Age_imp)
+shapiro.ZD.Age_imp<-shapiro.test(dataset_final.ZD$Age_imp)
+shapiro.ZE.Age_imp<-shapiro.test(dataset_final.ZE$Age_imp)
+shapiro.ZF.Age_imp<-shapiro.test(dataset_final.ZF$Age_imp)
+shapiro.ZG.Age_imp<-shapiro.test(dataset_final.ZG$Age_imp)
+shapiro.sol.Age_imp<-shapiro.test(dataset_final.sol$Age_imp)
+shapiro.petita.Age_imp<-shapiro.test(dataset_final.petita$Age_imp)
+shapiro.moderada.Age_imp<-shapiro.test(dataset_final.moderada$Age_imp)
+shapiro.gran.Age_imp<-shapiro.test(dataset_final.gran$Age_imp)
+shapiro.baix.Age_imp<-shapiro.test(dataset_final.baix$Age_imp)
+shapiro.mig.Age_imp<-shapiro.test(dataset_final.mig$Age_imp)
+shapiro.alt.Age_imp<-shapiro.test(dataset_final.alt$Age_imp)
+shapiro.Master.Age_imp<-shapiro.test(dataset_final.Master$Age_imp)
+shapiro.Miss.Age_imp<-shapiro.test(dataset_final.Miss$Age_imp)
+shapiro.Mr.Age_imp<-shapiro.test(dataset_final.Mr$Age_imp)
+shapiro.Mrs.Age_imp<-shapiro.test(dataset_final.Mrs$Age_imp)
+shapiro.Noble.Age_imp<-shapiro.test(dataset_final.Noble$Age_imp)
+
+```
+
+```{r}
+table_res2<-matrix(c(
+  shapiro.C1.Age_imp[2],
+  shapiro.C2.Age_imp[2],
+  shapiro.C3.Age_imp[2],
+  shapiro.Male.Age_imp[2],
+  shapiro.Female.Age_imp[2],
+  shapiro.ZA.Age_imp[2],
+  shapiro.ZB.Age_imp[2],
+  shapiro.ZC.Age_imp[2],
+  shapiro.ZD.Age_imp[2],
+  shapiro.ZE.Age_imp[2],
+  shapiro.ZF.Age_imp[2],
+  shapiro.ZG.Age_imp[2],
+  shapiro.sol.Age_imp[2],
+  shapiro.petita.Age_imp[2],
+  shapiro.moderada.Age_imp[2],
+  shapiro.gran.Age_imp[2],
+  shapiro.baix.Age_imp[2],
+  shapiro.mig.Age_imp[2],
+  shapiro.alt.Age_imp[2],
+  shapiro.Master.Age_imp[2],
+  shapiro.Miss.Age_imp[2],
+  shapiro.Mr.Age_imp[2],
+  shapiro.Mrs.Age_imp[2],
+  shapiro.Noble.Age_imp[2]),ncol=1)
+
+
+colnames(table_res2)<-c("Shapiro-Wilk (p)")
+rownames(table_res2)<-c("Classe 1","Classe 2","Classe 3","Homes","Dones", "Zona A", "Zona B", "Zona C", "Zona D", "Zona E", "Zona F", "Zona G", "Sol", "Familia petita","Familia moderada", "Familia gran", "Preu tiquet baix", "Preu tiquet mig", "Preu tiquet alt", "Master", "Miss", "Mr", "Mrs", "Nobles")
+table_res2<-as.table(table_res2)
+
+
+```
+
+```{r ,echo=FALSE}
+knitr::kable(table_res2, caption = "Test de normalitat en la distribució de l'edat en cadascun dels grups analitzats'.")%>% 
+  kable_styling(latex_options="scale_down")
+```
+Podem observar com hi ha alguns grups on si que l'edat segeuix una distribució normal. Aquest és el cas per exemple dels passatgers de 1a classe, els que van pagar un preu alt per el tiquet (que és bastant equivalent a ser de 1a classe) i segons les zones de la cabina (amb l'excepció de la zona B).
+
+Podem comprobar alguna d'aquestes distribucions de forma visual. Ho farem amb els passatgers que viatgen en class 1.
+
+```{r}
+# Use semi-transparent fill
+p_AgeClass1<-ggplot(dataset_final.Class1, aes(x=Age_imp)) +
+  geom_density(alpha=0.4)+ geom_vline(xintercept = mean(dataset_final.Class1$Age_imp), linetype="dashed", 
+                color = "red", size=0.5)
+
+
+p_AgeClass1
+```
+
+
+
+## 4.3. Comprovació de l'homoscedasticitat
+
+Per a comprobar l'homoscedasticitat (i.e. la homogeneitat de la variança) apliquem el test de Fligner-Killen (test no parametric) ja que com hem vist abans cap de les nostres variables continues segueix una distribució normal.
+
+Aplicarem aquest test per a comprobar si la variança en les variables edat i preu del tiquet són homogenies entre tots els grups de les variables categoriques
+```{r}
+# Comprovem per l'edat
+flin_Pclass<-fligner.test(Age_imp ~ Pclass, data = dataset_final)
+flin_Sex<-fligner.test(Age_imp ~ Sex, data = dataset_final)
+flin_Zona<-fligner.test(Age_imp ~ Zona, data = dataset_final)
+flin_FamilyCat<-fligner.test(Age_imp ~ FamilyCat, data = dataset_final)
+flin_PriceCat<-fligner.test(Age_imp ~ PriceCat, data = dataset_final)
+flin_title<-fligner.test(Age_imp ~ title, data = dataset_final)
+flin_Survived<-fligner.test(Age_imp ~ Survived, data = dataset_final)
+
+# Comprovem pel preu del tiquet
+flin_Pclass_Price<-fligner.test(Price_Per_Person ~ Pclass, data = dataset_final)
+flin_Sex_Price<-fligner.test(Price_Per_Person ~ Sex, data = dataset_final)
+flin_Zona_Price<-fligner.test(Price_Per_Person ~ Zona, data = dataset_final)
+flin_FamilyCat_Price<-fligner.test(Price_Per_Person ~ FamilyCat, data = dataset_final)
+flin_PriceCat_Price<-fligner.test(Price_Per_Person ~ PriceCat, data = dataset_final)
+flin_title_Price<-fligner.test(Price_Per_Person ~ title, data = dataset_final)
+flin_Survived_Price<-fligner.test(Price_Per_Person ~ Survived, data = dataset_final)
+```
+
+Creem la taula amb els resultats:
+
+```{r}
+
+table_res4<-matrix(c(
+  flin_Pclass$p.value,
+  flin_Sex$p.value,
+  flin_Zona$p.value,
+  flin_FamilyCat$p.value,
+  flin_PriceCat$p.value,
+  flin_title$p.value,
+  flin_Survived$p.value,
+  flin_Pclass_Price$p.value,
+  flin_Sex_Price$p.value,
+  flin_Zona_Price$p.value,
+  flin_FamilyCat_Price$p.value,
+  flin_PriceCat_Price$p.value,
+  flin_title_Price$p.value,
+  flin_Survived_Price$p.value),ncol=1)
+
+colnames(table_res4)<-c("Fligner-Killeen (p)")
+rownames(table_res4)<-c("Edat segons classe","Edat segons sexe","Edat segons zona", "Edat segons tamany de la familia", "Edat segons categoria de preu", "Edat segons titol", "Edat segons supervivencia","Preu segons classe","Preu segons sexe","Preu segons zona", "Preu segons tamany de la familia", "Preu segons categoria de preu", "Preu segons titol", "Preu segons supervivencia")
+table_res4<-as.table(table_res4)
+
+```
+
+```{r ,echo=FALSE}
+knitr::kable(table_res4, caption = "Test de Fligner-Killeen de homogeneitat de la variança: edat i preu del tiquet'.")%>% 
+  kable_styling(latex_options="scale_down")
+```
+
+Podem observar que tans sols la variança de l'edat a través de les diferentes zones és homogenia (acceptem la hipotesis de que les variances són homogenies ja que el p-valor > 0.5).
+La variança tant de l'edat com del preu del tiquet no és homogenia entre categories de la resta de variables.
+
+
+## 4.2. Distribucions de les variables entre passatgers supervivents i no supervivents
+```{r}
+# Variables continues
+p_price<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),], aes(x=Price_Per_Person, fill=Survived)) +
+  geom_density(alpha=0.4)
+p_age<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),], aes(x=Age_imp, fill=Survived)) +
+  geom_density(alpha=0.4)
+
+# Variables categoriques
+p_class<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=Pclass, fill=Survived))
+p_sex<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=Sex, fill=Survived))
+p_zona<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=Zona, fill=Survived))
+p_familyCat<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=FamilyCat, fill=Survived))
+p_priceCat<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=PriceCat, fill=Survived))
+p_title<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=title, fill=Survived))
+p_Embarked<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=Embarked, fill=Survived))
+p_AgeCat<-ggplot(dataset_final[which(!(is.na(dataset_final$Survived))),])+geom_bar(aes(x=AgeCat, fill=Survived))
+
+figure_Dis <- ggarrange(p_price,p_age,p_class,p_sex,p_zona,p_familyCat,p_priceCat,p_title,p_Embarked,p_AgeCat, ncol = 3, nrow = 4)
+
+figure_Dis
+```
+
+## 4.3. Comparació entre dos grups de dades (variables continues)
+
+Comprovem si hi ha diferencies significatives en la edat i el preu del bitllet entre la gent que va sobreviure i els que van morir.
+```{r}
+
+wilcox.test(Price_Per_Person ~ Survived, data = dataset_final[which(!(is.na(dataset_final$Survived))),])
+wilcox.test(Age_imp ~ Survived, data = dataset_final[which(!(is.na(dataset_final$Survived))),])
+```
+Podem observar que hi ha diferencies significatives entre el preu pagat per tiquet de la gent que va sobreviure (més alt) i la que va morir (més baix)
+En canvi, no s'aprecien diferencies significatives entre la edat de la gent que va sobreviure i la que va morir.
+
+## 4.4. Comparació entre dos grups de dades (variables categoriques)
+
+Mirem si hi ha diferencies entre les proporcions dels diferents grups de les variables categoriques entre la gent que va sobreviure i la que va morir.
+```{r}
+
+# Segons el sexe
+sup_sex<-t(table(dataset_final[which(!(is.na(dataset_final$Survived))),]$Sex,dataset_final[which(!(is.na(dataset_final$Survived))),]$Survived))
+sup_sex
+chisq.test(sup_sex)
+
+# Segons la zona
+sup_zona<-t(table(dataset_final[which(!(is.na(dataset_final$Survived))),]$Zona,dataset_final[which(!(is.na(dataset_final$Survived))),]$Survived))
+sup_zona
+chisq.test(sup_zona)
+
+# Segons el tamany de familia
+sup_FamilyCat<-t(table(dataset_final[which(!(is.na(dataset_final$Survived))),]$FamilyCat,dataset_final[which(!(is.na(dataset_final$Survived))),]$Survived))
+sup_FamilyCat
+chisq.test(sup_FamilyCat)
+
+# Segons el tamany del preu del bitllet
+sup_PriceCat<-t(table(dataset_final[which(!(is.na(dataset_final$Survived))),]$PriceCat,dataset_final[which(!(is.na(dataset_final$Survived))),]$Survived))
+sup_PriceCat
+chisq.test(sup_PriceCat)
+
+# Segons el titol que es tingui
+sup_title<-t(table(dataset_final[which(!(is.na(dataset_final$Survived))),]$title,dataset_final[which(!(is.na(dataset_final$Survived))),]$Survived))
+sup_title
+chisq.test(sup_title)
+
+# Segons on s'ha embarcat
+sup_Embarked<-t(table(dataset_final[which(!(is.na(dataset_final$Survived))),]$Embarked,dataset_final[which(!(is.na(dataset_final$Survived))),]$Survived))
+sup_Embarked
+chisq.test(sup_Embarked)
+
+# Segons la categoria d'edat
+sup_AgeCat<-t(table(dataset_final[which(!(is.na(dataset_final$Survived))),]$AgeCat,dataset_final[which(!(is.na(dataset_final$Survived))),]$Survived))
+sup_AgeCat
+chisq.test(sup_AgeCat)
+
+```
+Podem observar que hi ha diferencies significatives entre les diferents classes de totes les variables categoriques analitzades entre la gent que va sobreviure i la que va morir.
+
+
+## 4.6. Correlació entre variables
+Calculem la correlació entre les variables continues. Utilitzem el metode de "Spearman" ja que les dades no segueixen una distribució normal.
+```{r}
+dataset_final_cont<-dataset_final[,c("Price_Per_Person","Age_imp")]
+
+cor.test(dataset_final_cont$Price_Per_Person,dataset_final_cont$Age_imp, method = "spearman")
+
+```
+Podem observar com l'edat és correlaciona significativament amb el preu del bitllet pagat.
+
+```{r}
+corr.res<-cor(dataset_final_cont, method = 'spearman')
+
+# Si tinguessim més variables podriem crear un grafic amb el codi següent:
+#corrplot.mixed(corr.res,upper="circle",number.cex=.7,tl.cex=.8)
+
+```
+
+\newpage
+
+# 5. Modelització
+
+## 5.1. Arbre de decisió
+
+***
+
+**Construcció del model**
+
+***
+
+Una manera d'analitzar el dataset és aplicant un model de classificació basat en arbre, el qual ens permetrà veure quines variables tenen més influència a l'hora de determinar la probabilitat de supervivència de cada passatger a partir de les variables que el configuren. 
+
+Les variables que s'han utilitzat per construir el model són les següents:
+
+* Pclass
+
+* Sex
+
+* Embarked
+
+* title
+
+* FamilyCat
+
+* AgeCat
+
+Per poder aplicar aquest mètode, és necessari entrenar el model a generar amb els registres corresponents al dataset de train i separar les variables descriptives de la classe que es vol predir. El següent tall de codi prepara les variables que s'utilitzaran a l'etapa d'entrenament i les que s'utilitzaran per avaluar la precisió del model. Com que de les variables de test no coneixem la classe definitiva el que farem serà partir el dataset d'entrenament en dos subconjunts un dels quals servirà per entrenar el model i l'altre per avaluar-lo (2/3 dels registres per l'avaluació i el 1/3 restant per a l'entrenament).
+
+Com que les dades estan ordenades i cal barrejar-les per tal que la tria sigui el màxim d'equitativa possible i no interfereixi amb el resultat que proporcionarà el model. Per fer-ho, apliquem el següent codi i guardem el resultat a la variable *dataset_train_random*:
+
+```{r}
+set.seed(1912)
+dataset_train_random <- dataset_train[sample(nrow(dataset_train)),]
+str(dataset_train_random)
+```
+
+Per poder aplicar la funció relativa a la construcció del model cal diferenciar entre les variables descriptives i la classe. Això ho fem seleccionant l'índex de la columna on es troba la classe (columna 7) i la resta (columnes de la 1 a 6). Els valors corresponents a la classe els guardem a la variable y_car i els corresponents a les variables descriptives a la x_car:
+
+```{r}
+set.seed(1912)
+y <- dataset_train_random[,"Survived"]
+x <- dataset_train_random[,c("Pclass","Sex","FamilyCat","PriceCat","title","Embarked","AgeCat")]
+```
+
+Un cop obtinguda la mostra desordenada, anem a dividir el conjunt d edades en mostres d'entrenament i test. El conjunt d'entrenament serà aquell que s'utilitzarà per construir el model i el conjunt de proves el que s'utilitzarà per avaluar la seva precisió. Seguidament obtenim els diferents conjunts d'entrenament i test a partir de la proporció de casos que hem triat per cada conjunt (2/3 i 1/3) utilitzant la funció *sample*:
+
+```{r}
+set.seed(1912)
+indexes = sample(1:nrow(x), size=floor((2/3)*nrow(x)))
+train_x <- x[indexes,]
+train_y <- y[indexes]
+test_x  <- x[-indexes,]
+test_y  <- y[-indexes]
+```
+
+Per poder executar el mètode cal que no existeixin valors nul, els eliminem. Per això hem creat una funció que retorna els indexs de les files que contenen algun valor nul en un dataframe.
+
+```{r}
+indices_with_na <- function(data) {
+  iwn <- c()
+  for (i in c(1:nrow(data))) {
+    if (any(is.na(data[i,]))) {
+      iwn <- c(iwn, i)
+    }
+  }
+  return(iwn)
+}
+```
+
+Comprovem utilitzant la funció has_na que no hi ha variables del dataset amb valors nul:
+
+```{r}
+has_na(train_x)
+has_na(test_x)
+```
+I que tant les variables descriptives com les corresponents a la classe tenen la mateixa mida:
+
+```{r}
+nrow(train_x) == length(train_y)
+nrow(test_x) == length(test_y)
+```
+
+Un cop preparades les variables que s'utilitzaran, creem el model utilitzant l'algoritme C5.0 de la llibreria C50 i observem un resum del model generat. 
+
+```{r}
+model_tree <- C50::C5.0(train_x, train_y, rules=TRUE)
+summary(model_tree)
+```
+
+Podem observar gràficament el model generat si el construïm sense mostrar les regles i el passem a la funció plot:
+
+```{r}
+model_tree_for_plot <- C50::C5.0(train_x, train_y)
+plot(model_tree_for_plot)
+```
+
+***
+
+**Avaluació del model**
+
+***
+
+Amb el model d'arbre de decisió creat a partir de les dades del conjunt d'entrenament podem avaluar la seva eficiència intentant predir les dades que es troben al conjunt de prova. Per fer-ho utilitzem la funció *predict* de R que classifica els diferents registres del conjunt de prova (test_X) utilitzant el model que rep (model_tree).
+
+```{r}
+predicted_test <- predict(model_tree,test_x, type="class")
+```
+
+Si observem el resultat d'aquesta funció veiem que es correspon a un vector amb les etiquetes de la classe. Per comprovar la precisió de l'arbre avaluem quantes d'aquestes etiquetes predites es corresponen al valor real que té el registre comparant-lo amb el contingut de la variable *test_y*:
+
+```{r}
+precisio_model <- sum(predicted_test == test_y)/length(predicted_test)
+print(paste("La precisió del model és de ", round(precisio_model*100,2), "%", sep=""))
+```
+
+***
+
+**Comentaris del model**
+
+***
+
+Utilitzant el model basat en arbres de decisió hem obtingut una precisió de 82.15%, la qual és un resultat bastant correcte i que demostra que realment existeix una influència de les variables descriptives a l'hora de predir la classe. Tal i com hem pogut observar a partir del gràfic i el resum del model creat, aquest no ha utilitzat totes les variables ja que ha prescindit de la variable AgeCat. 
+
+També hem pogut veure que la variable que té més pes a l'hora de determinar el destí dels passatgers del titanic és el sexe, el qual té un pes del 93.77% en el model creat. El títol nobiliari del passatger també guarda una forta relació amb el model, mantenint un 62.79%. Finalment trobem que la dimensió de la família i classe dels tiquets també tenen una influència considerable però menor respecte les dues anteriors comentades.
+
+## 5.2. Support Vector Machine
+
+***
+
+**Construcció del model**
+
+***
+
+Per construir un model basat en SVM utilitzarem les mateixes dades transformades que en l'apartat anterior ja que al igual que els arbres de decisió, un model basat en svm utilitza també variables categòriques.
+
+A l'hora de cridar la funció encarregada de crear el model cal que tan la classe com les variables descriptives es trobin en el mateix dataframe així que fusionem la classe i les variables descriptives i comprovem que s'han fusionat correctament:
+
+```{r}
+train_x["Fate"] <- train_y
+str(train_x)
+```
+
+Seguidament ja podem crear el model, per la qual cosa és necessari especificar a priori la classe i les variables descriptives que intervenen en el procés. Per la creació del model basat en Support Vector Machine utilitzem la funció *svm* del paquet *E1071*.
+
+```{r}
+SVM_model.train <- svm(Fate ~ Pclass + Sex + Embarked + title + FamilyCat + AgeCat, data = train_x, probability = TRUE)
+```
+
+Un cop creat el model, n'observem un resum utilitzant la funció *summary*:
+
+```{r}
+summary(SVM_model.train)
+```
+
+***
+
+**Avaluació del model**
+
+***
+
+Un cop creat el model procedim a avaluar-lo predint els casos de test. Per fer-ho, al igual que en l'apartat anterior fem ús de la funció *predict*, la qual rep el model creat i els registres dels casos que es volen predir.
+
+```{r}
+SVM_pred.test <- predict(SVM_model.train, test_x)
+```
+
+Una manera de visualitzar els resultats és utilitzant una matriu de confusió. La funció *CrossTable* de la llibreria *gmodels* ofereix una manera simple de presentar els resultats utilitzant una matriu de confusió però amb més detall:
+
+```{r}
+CrossTable(test_y, SVM_pred.test, prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE, dnn = c("Realitat", "Predicció"))
+```
+
+Per avaluar la precisió del model utilitzem una matriu de confusió simple com en l'apartat anterior:
+
+```{r}
+matriu_conf_svm <- table(test_y,Predicted=SVM_pred.test)
+precisio_model_matriu_conf <- sum(diag(matriu_conf_svm)) / sum(matriu_conf_svm)
+print(paste("La precisió del model és de ", round(precisio_model_matriu_conf*100,2), "%", sep=""))
+```
+
+***
+
+**Comentaris del model**
+
+***
+
+Utilitzant el model basat en SVM obtenim una precisió del 83.16%, lleugerament millor que el que s'ha obtingut utilitzant arbres de decisió.
+
+## 5.3. Regressió logística
+
+***
+
+**Construcció del model**
+
+***
+
+Un altre mètode per analitzar les dades és aplicant una regressió logística, ja que aquesta ens permet realitzar una classificació a partir de la descripció d'un registre. Per crear el model podem utilitzar la funció *glm*, on cal especificar la variable a predir (*Fate*), les variables descriptives i el dataframe que s'utilitza. També cal especificar que la classe que es vol predir consta de nomes dos valors establint el valor *binomial* al paràmetre *family*.
+
+```{r}
+model_glm <- glm(formula=Fate~Pclass+Sex+FamilyCat+PriceCat+title+Embarked+AgeCat,data=train_x,family=binomial(link=logit))
+```
+
+Un cop creat el model podem visualitzar-ne la seva descripció utilitzant la funció *summary*:
+
+```{r}
+summary(model_glm)
+```
+
+***
+
+**Avaluació del model**
+
+***
+
+Per avaluar el model tornem a utilitzar els registres de la variable *test_x* i els passem a la funció *predict*:
+
+```{r}
+probs_prediction_glm <- predict(model_glm, newdata=test_x, type="response")
+head(probs_prediction_glm)
+```
+
+Com podem veure la predicció d'aquest model retorna la probabilitat de que els registre pertanyin o no a la variable dictòmica que es vol predir, motiu pel qual cal realitzar una conversió als valors 0 i 1 abans de poder comparar els resultats predits amb els reals de la variable test_y:
+
+```{r}
+prediction_glm <- c()
+for (i in probs_prediction_glm) {
+  if (i<0.5)
+    prediction_glm <- c(prediction_glm,0)
+  else
+    prediction_glm <- c(prediction_glm,1) 
+}
+```
+
+Un cop obtinguts els valors predits amb el mateix format dels valors reals, procedim a crear una matriu de confusió per veure com s'han distribuït els encerts i les errades: 
+
+```{r}
+CrossTable(test_y, prediction_glm, prop.chisq = FALSE, prop.c = FALSE, prop.r = FALSE, dnn = c("Realitat", "Predicció"))
+```
+
+Per obtenir una mesura de la bondat del model apliquem el mateix procediment que el que hem vist en els dos subapartats anteriors, fent ús de la matriu de confusió:
+
+```{r}
+matriu_conf_glm <- table(test_y,Predicted=prediction_glm)
+precisio_model_matriu_conf_glm <- sum(diag(matriu_conf_glm)) / sum(matriu_conf_glm)
+print(paste("La precisió del model és de ", round(precisio_model_matriu_conf_glm*100,2), "%", sep=""))
+```
+
+***
+
+**Comentaris del model**
+
+***
+
+Utilitzant la regressió logística obtenim una precisió del 83.84%, lleugerament superior a la resta de modelitzacions provades. Observant el resum del model podem veure com les categòries que més influèixen en la decisió de la classe d'un passatger utilitzant aquesta modelització és quan el títol del passatger és noble o simplement Mr (ja que indica que no poseeix cap títol nobiliari i pertany al gènere masculí). També influeix que el passatger viatgi sol o amb poca companyia i el fet de si és o no ancià.
+
+\newpage
+# 6. Predicció
+
+Arribats a aquest punt hem volgut presentar-hi els nostres resultats a la competició activa de la pàgina Kaggle. Per fer-ho hem predit els registres corresponents al fitxer de test (*test.csv*) utilitzant el model que ens ha donat millors resultats: el model basat en la regressió logística.
+
+```{r}
+# Obtenim les probabilitats de classe dels registes corresponents a l'apartat de test
+probs_prediction_glm_competition <- predict(model_glm, newdata=dataset_test, type="response")
+# Convertim les probabilitats en predicció
+prediction_glm_comp <- c()
+for (i in probs_prediction_glm_competition) {
+  if (i<0.5)
+    prediction_glm_comp <- c(prediction_glm_comp,0)
+  else
+    prediction_glm_comp <- c(prediction_glm_comp,1) 
+}
+```
+
+Un cop obtinguda la predicció la guardem en un dataframe amb l'identificador del passatger:
+
+```{r}
+df_competition <- data.frame(dataset_test$PassengerId,prediction_glm_comp)
+colnames(df_competition) <- c("PassengerId", "Survived")
+```
+
+Finalment generem el fitxer csv que conté la predicció:
+
+```{r}
+write.csv(df_competition, "prediction_comp.csv", row.names=FALSE, quote=FALSE)
+```
+
+\newpage
+# 7. Conclusions
+
+```{r}
+
+
+
+```
+
+\newpage
+
+```{r  include=FALSE}
+table<-matrix(c("Investigació prèvia","Redacció de les respostes","Desenvolupament codi","AAS & ATP","AAS & ATP","AAS & ATP"),ncol=2)
 colnames(table)<-c("Contribucions","Signa")
 rownames(table)<-c("","","")
 table_contributions<-as.table(table)
 table_contributions
 ```
 
-```{r, echo=FALSE}
+```{r ,echo=FALSE}
 knitr::kable(table_contributions, align = 'c', caption = "Tots els membres han contribuït de manera igualitaria en l'elaboració de la pràctica.")
 ```
 
-## 12. Bibliografia
+# 8. Bibliografia
 
-- Subirats, L., Calvo, M. (2018). Web Scraping. Editorial UOC.
-- Masip, D. El lenguaje Python. Editorial UOC.
-- Lawson, R. (2015). Web Scraping with Python. Packt Publishing Ltd. Chapter 2. Scraping the Data.
-- Simon Munzert, Christian Rubba, Peter Meißner, Dominic Nyhuis. (2015). Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. John Wiley & Sons.
-- Tutorial de Github https://guides.github.com/activities/hello-world.
+- Gibergans, J. (2019). Regressió lineal simple. Editorial UOC.
 
-=======
----
-title: "Dataset: Receptari culinari d'Hogarmania (+10.000 receptes disponibles)"
-author: "Aleix Arnau Soler & Adrià Tarradas Planella"
-date: "9 de Novembre de 2020"
-header-includes:
-  - \usepackage[spanish]{babel}
-  - \usepackage{caption}
-  - \captionsetup[table]{name=Taula}
-output: pdf_document
----
+- Gibergans, J. (2019). Regressió lineal múltiple. Editorial UOC.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+- Guillén, M., Alonso, M. T. (2019). Models de regressió logística. Editorial UOC.
 
-## 1. Context
+- Liviano, D., Pujol, M. (2019). Models de regressió i anàlisi multivariant amb R-Commander. Editorial UOC.
 
-La societat actual està marcada per un ritme de vida frenètic, amb horaris laborals, moltes ocupacions i on, en molts casos, mares i pares han de a més, compaginar tot això amb cuidar i atendre els fills. Tot junt fa que en moltes llars sigui pràcticament impossible dedicar gaire temps a la cuina. La falta de temps, preparació, o simplement coneixement, fa que en moltes ocasions s'acabi optant per preparar menjar ràpid o demanant menjar a domicili, amb el risc afegit de que la nostre dieta, i la dels nostres fills, no sigui lo equilibrada que tots desitjariem. Però existeixen un gran número de receptes de cuina que podem elaborar de manera ràpida per als nostres menús diaris. En molts casos, el problema és simplement que es desconeixen els plats que es poden elaborar amb allò que es té a disposició, o quins plats nutritius i equilibrats es poden elaborar si es disposa de poc temps. O simplement que es desconeixen els ingredients i els passos necessaris per a elaborar un plat d'interès.
-La web [**Hogarmania**](www.hogarmania.com) conté una secció de cuina amb receptes presentades en programes de televisió a Espanya durant més d'una dècada per cuiners reconeguts a nivell nacional com Karlos Arguiñano, entre altres. Aquest lloc web conté totes les dades i material multimèdia necessari per a la creació d'un receptari complet i equilibrat.
-  
-
-## 2. Títol pel dataset
-
-El títol del dataset és "Receptari Hogarmania" ja que recull informació de totes les receptes de cuina de la pàgina web Hogarmania.
-
-
-## 3. Descripció del dataset
-
-El dataset generat és un recopilatori de més de 10.000 receptes de cuines extretes de la secció de cuina de la web [**Hogarmania**](www.hogarmania.com) i elaborades per varis cuiners (la majoria en programes de televisió). Aquest dataset proporciona les eines necessàries per a procedir de forma exitosa en el món de la cuina, amb un registre extens de la nostre memoria i patrimoni culinari. Cadascuna de les receptes enregistrades s'acompanya (si es troba disponible) del vídeo (1 vídeo resum i un vídeo amb la versió completa) que al seu dia va ser emès per televisió on un cuiner de referència a nivell nacional explica tots els passos a seguir per a l'elaboració de la recepta, pas a pas. Per a cadascuna de les receptes (files) es disposa de les següents variables (columnes): nom de la recepta, categoria a la qual pertany la recepta, ingredients de la recepta, temps de preparació, temps total, nom del cuiner, pasos de l'elaboració, composició nutricional, consell medic, imatge de la recepta, video resum amb els passos de l’elaboració, video complet de l'elaboració de la recepta.
-
-\newpage
-## 4. Representació gràfica
-
-A la Figura 1 es pot veure la representació gràfica escollida, la qual consisteix en un *collage* que agrupa imatges representatives de cada tipus de recepta (carns, sopes, còcktails, etc.).
-
-![Mosaic amb imatges d'algunes de les receptes disponibles](./images/logo.jpg)
-
-
-## 5. Contingut
-
-Per a cada recepta (les quals corresponen amb cada fila or registre del conjunt de dades) es disposa de la informació següent en forma de variables o columnes:
-
-* **titol**: Títol/nom de la recepta.
-* **ingredients**: Ingredients necessaris per a l'elaboració de la recepta.
-* **temps_preparacio**: Temps necessari per a la preparació de la recepta.
-* **temps_total**: Temps total necessari per a la preparació i cocció de la recepta.
-* **chef**: Cuiner encarregat d'elaborar i explicar la recepta.
-* **elaboracio**: Pasos a seguir per a l'elaboració de la recepta.
-* **info_nutricional**: Informació nutricional de la recepta.
-* **consells_doctor**: Consells per part de personal especialitzat (doctors i dietistes) en relació a la recepta.
-* **link_imatge**: Imatge de  la presentació final del plat.
-* **link_video_resum**: Video resum (3-5 min) dels pasos a seguir per a l'elaboració de la recepta.
-* **link_video_complet**: Video complet de l'elaboració de la recepta (tal qual es va emetre per televisió).
-* **tipus_recepta**: Categoria a la que pertany la recepta (i.e. carns, pasta, postres, etc).
-* **persones**: Quantitat de persones que es podran alimentar amb l'elaboració del plat que explica la recepta.
-
-Tota la informació recopilada s'emmagatzema a un fitxer csv amb el nom "recipes_dataset_AAAAMMDD_HHMMSS", on la part final del nom es correspon al timestamp de la data en la que ha estat creat. Això fa que sigui possible identificar a quin moment es van recopilar les dades i, per tant, saber la data en la que la informació del dataset es correspon exactament al contingut de la web.
-
-\newpage
-## 6. Agraïments
-
-La titularitat de les dades correspon exclusivament a      COMUNICACIÓN S.A.
-Totes les dades han sigut extretes a partir de la informació disponible en diferents *sitemaps* de l'apartat de receptes de la secció de cuina del web [**Hogarmania**](www.hogarmania.com)
-Per a l'extracció de dades s'ha fet ús del llenguatge de programació Python i els mòduls disponibles per a dur a terme tècniques de *Web Scraping* com són *requests* o *beautifulsoup4*.
-
-
-## 7. Inspiració
-
-Un receptari com el que es troba disponible en aquest dataset té un gran ventall d'aplicacions ja que permet responde a un gran número de preguntes. Per un costat és una guia molt àmplia i detallada de la memoria culinaria del nostre país, amb la informació detallada i necessària per a l'elaboració de cadascuna de les receptes recopilades. Però, i aixó és el que el fa més important, les dades enregistrades  ens permeten filtrar i seleccionar d'entre les més de 10.000 receptes disponibles, aquelles receptes que poden ser d'interès en un moment concret. Així doncs, el dataset ens permetria, per exemple, filtrar i seleccionar aquelles receptes que podríem elaborar només amb allò que tenim disponible a la nevera. De manera similar, empreses de neveres intel·ligents amb implementació de IoT poden implementar un sistema on la teva propia nevera et suggereix plats a elaborar basant-se amb els ingredients que tens disponibles. De forma similar, es pot filtrar per plats d'elaboració curta, si es disposa de poc temps, o partir de referències mèdiques o nutricionals. De forma similar, dietistes i/o usuaris poden utilitzar les dades disponibles en aquest dataset per a elaborar dietas nutricionalment equilibrades, filtran la informació a partir de la informació nutricional de la recepta. Totes les receptes, a més, venen amb vídeos que ajuden als usuaris a elaborar les receptes de forma fàcil i entretinguda.
-
-Per posar un cas pràctic. Una pare o mare pot arribar a casa i preguntar-se: quin plat podria elaborar per a menjar jo i els meus dos fills, que fos nutritiu i gustos, amb menys de 40 minuts que tinc disponibles abans de tornar a la feina, i a partir dels ingredients que tinc a mà a casa? I és més, en l’escenari de que es sàpiga el plat que es vol o es pot cuinar, quins són els passos per a cuinar aquesta recepta? El dataset proposat permetria trobar una o varies receptes d'entre les disponibles que s'adequa als requeriments plantejats i els ingredients disponibles. A més, disposa dels passos i vídeos per a l'elaboració del plat de manera senzilla i satisfactòria.
-
-
-## 8. Llicència
-
-Aquest dataset està publicat sota la llicència **Creative Commons Reconeixement-NoComercial-SenseObraDerivada** (CC BY-NC-ND 4.0 License). Els termes legals que fan referència a la llicència es poden consultar a <https://creativecommons.org/licenses/by-nc-nd/4.0/>.
-
-Aquesta llicència és la més restrictiva de totes. El motiu principal que ens ha portat a aplicar una llicència tant restrictiva és degut a que la "Propiedad intelectual y Derechos de Copyright" de la secció d'"aviso legal" del web especifica que:
-
-*"Queda prohibida la reproducción, distribución, puesta a disposición, comunicación pública y utilización total o parcial, de los contenidos (imágenes, textos y vídeos) de Hogarmania.com, en cualquier forma o modalidad, dispositivo analógico o digital, sin previa, expresa y escrita autorización, incluyendo, en particular, su mera reproducción y/o puesta a disposición como resúmenes, reseñas o revistas de prensa con fines comerciales o directa o indirectamente lucrativos, a la que BAINET COMUNICACIÓN S.A. manifiesta oposición expresa."*
-
-Vam intentar comunicar-nos amb el propietari de les dades, però a dia d'avui encara no em rebut resposta i per tal d'evitar un impacte negatiu del nostre treball cap al propietari de les dades n'oferim uns usos limitats.
-
-Els punts més importants que caracterítzen aquesta llicència són:
-
-* **BY - Reconeixament**: En cas de redistribució del dataset, caldrà donar crèdit als autors i al propietari de les dades
-
-* **NC - No comercial**: El dataset no pot ser utilitzat amb fins comercials
-
-* **ND - Sense obres derivades**: No es pot publicar cap obra derivada del dataset
-
-
-## 9. Codi
-
-El codi utilitzat per a l'extracció de dades del lloc web es troba disponible a:
-
-* [**Repositori Aleix:** https://github.com/AleixArnauSoler/recepy](https://github.com/AleixArnauSoler/recepy)
-
-* [**Repositori Adrià:** https://github.com/latp/recepy](https://github.com/latp/recepy)
-
-
-## 10. Dataset
-
-El dataset generat es troba disponible [**aquí**](https://github.com/latp/recepy/data) i a [**Zenodo**](https://zenodo.org/record/4265137) amb el DOI **10.5281/zenodo.4265137** .
-
-
-## 11. Contribució
-
-```{r, include=FALSE}
-table<-matrix(c("Recerca prèvia","Redacció de les respostes","Desenvolupament codi","AAS & ATP","AAS & ATP","AAS & ATP"),ncol=2)
-colnames(table)<-c("Contribucions","Signa")
-rownames(table)<-c("","","")
-table_contributions<-as.table(table)
-table_contributions
-```
-
-```{r, echo=FALSE}
-knitr::kable(table_contributions, align = 'c', caption = "Tots els membres han contribuït de manera igualitaria en l'elaboració de la pràctica.")
-```
-
-## 12. Bibliografia
-
-- Subirats, L., Calvo, M. (2018). Web Scraping. Editorial UOC.
-- Masip, D. El lenguaje Python. Editorial UOC.
-- Lawson, R. (2015). Web Scraping with Python. Packt Publishing Ltd. Chapter 2. Scraping the Data.
-- Simon Munzert, Christian Rubba, Peter Meißner, Dominic Nyhuis. (2015). Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. John Wiley & Sons.
-- Tutorial de Github https://guides.github.com/activities/hello-world.
-
->>>>>>> 80187a34b193a60b7c605514a645811316b893dd
